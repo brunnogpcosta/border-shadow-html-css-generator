@@ -9,6 +9,8 @@ export default class Form extends Component {
         this.state = {
             value: '',
             colorBody: 'blueviolet',
+            bodySizeWidth: '200',
+            bodySizHeight: '200',
             topRight: '50',
             topLeft: '50',
             bottomRight: '50',
@@ -41,6 +43,8 @@ export default class Form extends Component {
         this.colorShadowChange = this.colorShadowChange.bind(this);
         this.borderStyleChange = this.borderStyleChange.bind(this);
         this.espessuraBordaChange = this.espessuraBordaChange.bind(this)
+        this.larguraObjetoChange = this.larguraObjetoChange.bind(this)
+        this.alturaObjetoChange = this.alturaObjetoChange.bind(this)
     }
 
 
@@ -72,70 +76,57 @@ export default class Form extends Component {
     colorBorderChange(event) {
         //console.log(event.target.value)
         this.setState({ colorBorder: event.target.value });
-
-
     }
 
     offSetXChange(event) {
         this.setState({ offSetX: event.target.value });
         //console.log("Borda Inferior Esquerda: ", this.state.bottomLeft)
-
     }
-
 
     offSetYChange(event) {
         this.setState({ offSetY: event.target.value });
         //console.log("Borda Inferior Esquerda: ", this.state.bottomLeft)
-
     }
 
     blurRadiusChange(event) {
         this.setState({ blurRadius: event.target.value });
         //console.log("Borda Inferior Esquerda: ", this.state.bottomLeft)
-
     }
 
     spreadRadiusChange(event) {
         this.setState({ spreadRadius: event.target.value });
         //console.log("Borda Inferior Esquerda: ", this.state.bottomLeft)
-
-    }
-
-    spreadRadiusChange(event) {
-        this.setState({ spreadRadius: event.target.value });
-        //console.log("Borda Inferior Esquerda: ", this.state.bottomLeft)
-
     }
 
     colorShadowChange(event) {
         //console.log(event.target.value)
         this.setState({ colorShadow: event.target.value });
-
-
     }
 
     colorBodyChange(event) {
         //console.log(event.target.value)
         this.setState({ colorBody: event.target.value });
-
-
     }
 
     borderStyleChange(event) {
         //console.log(event.target.value)
         this.setState({ borderStyle: event.target.value });
-
-
     }
-
 
     espessuraBordaChange(event) {
         //console.log(event.target.value)
         this.setState({ espessuraBorda: event.target.value });
-
-
     }
 
+    larguraObjetoChange(event) {
+        //console.log(event.target.value)
+        this.setState({ bodySizeWidth: event.target.value });
+    }
+
+    alturaObjetoChange(event) {
+        //console.log(event.target.value)
+        this.setState({ bodySizeHeight: event.target.value });
+    }
 
     resetForm() {
         this.setState({ topLeft: '50', topRight: '50', bottomRight: '50', bottomLeft: '50' });
@@ -159,6 +150,8 @@ export default class Form extends Component {
                 <div id="quadrado" style={{ backgroundColor: this.state.colorBody, borderTopLeftRadius: this.state.topLeft + 'px', borderTopRightRadius: this.state.topRight + 'px', borderBottomRightRadius: this.state.bottomRight + 'px', borderBottomLeftRadius: this.state.bottomLeft + 'px', borderColor: this.state.colorBorder, boxShadow: this.state.offSetX + 'px ' + this.state.offSetY + 'px ' + this.state.blurRadius + 'px ' + this.state.spreadRadius + 'px ' + this.state.colorShadow, borderWidth: this.state.espessuraBorda + 'px ', borderStyle: this.state.borderStyle }} ></div><br /><br />
 
                 <form>
+
+
                     <div className="arredondamento">
                         <h3>Arrendondamento</h3>
                     Borda Superior-Esquerda<br />
@@ -195,19 +188,19 @@ export default class Form extends Component {
 
 
                     Estilo da Borda<br />
-                        <select class="w3-select" name="option">
-                            <option value="1">dotted</option>
-                            <option value="2">dashed</option>
-                            <option value="3">solid</option>
-                            <option value="4">double</option>
-                            <option value="5">groove</option>
-                            <option value="6">ridge</option>
-                            <option value="7">inset</option>
-                            <option value="8">outset</option>
+                        <select name="option" onChange={this.borderStyleChange}>
+                            <option value="solid">solid</option>
+                            <option value="dotted">dotted</option>
+                            <option value="dashed">dashed</option>
+                            <option value="double">double</option>
+                            <option value="groove">groove</option>
+                            <option value="ridge">ridge</option>
+                            <option value="inset">inset</option>
+                            <option value="outset">outset</option>
 
                         </select><br /><br />
                         Espessura da Borda<br />
-                        <input type="range" onChange={this.espessuraBordaChange} min="0" max="100" /><br /><br />
+                        <input type="range" onChange={this.espessuraBordaChange} min="0" max="100" step="0.1" defaultChecked="1" /><br /><br />
                     </div>
 
                 </form>

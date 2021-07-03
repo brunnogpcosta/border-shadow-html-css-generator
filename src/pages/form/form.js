@@ -145,49 +145,47 @@ export default class Form extends Component {
 
     render() {
         return (
-            <div>
-
-                <div id="quadrado" style={{ backgroundColor: this.state.colorBody, borderTopLeftRadius: this.state.topLeft + 'px', borderTopRightRadius: this.state.topRight + 'px', borderBottomRightRadius: this.state.bottomRight + 'px', borderBottomLeftRadius: this.state.bottomLeft + 'px', borderColor: this.state.colorBorder, boxShadow: this.state.offSetX + 'px ' + this.state.offSetY + 'px ' + this.state.blurRadius + 'px ' + this.state.spreadRadius + 'px ' + this.state.colorShadow, borderWidth: this.state.espessuraBorda + 'px ', borderStyle: this.state.borderStyle }} ></div><br /><br />
-
-                <form>
+            <div id="container">
 
 
-                    <div className="arredondamento">
+                <div id="leftSide">
+                    <form className="formLeft">
+
                         <h3>Arrendondamento</h3>
-                    Borda Superior-Esquerda<br />
+                            Borda Superior-Esquerda<br />
                         <input type="range" onChange={this.borderTopLeftChange} min="0" max="100" /><br /><br />
-                    Borda Superior-Direita<br />
+                            Borda Superior-Direita<br />
                         <input type="range" onChange={this.borderTopRightChange} min="0" max="100" /><br /><br />
-                    Borda Inferior-Direita<br />
+                            Borda Inferior-Direita<br />
                         <input type="range" onChange={this.borderBottomRightChange} min="0" max="100" /><br /><br />
-                    Borda Inferior-Esquerda<br />
+                            Borda Inferior-Esquerda<br />
                         <input type="range" onChange={this.borderBottomLeftChange} min="0" max="100" /><br /><br />
-                    </div>
 
-                    <div className="sombreamento">
+
+
                         <h3>Sombreamento</h3>
-                    Eixo X<br />
+                            Eixo X<br />
                         <input type="range" onChange={this.offSetXChange} min="0" max="100" /><br /><br />
-                    Eixo Y<br />
+                            Eixo Y<br />
                         <input type="range" onChange={this.offSetYChange} min="0" max="100" /><br /><br />
-                    Arredondamendo Sombra <br />
+                            Arredondamendo Sombra <br />
                         <input type="range" onChange={this.blurRadiusChange} min="0" max="100" /><br /><br />
-                    Alcance da Sombra<br />
+                            Alcance da Sombra<br />
                         <input type="range" onChange={this.spreadRadiusChange} min="0" max="100" /><br /><br />
 
-                    </div>
 
-                    <div className="coresFormas">
+
+
                         <h3>Cores e Formas</h3>
-                    Cor da Forma<br />
+                            Cor da Forma<br />
                         <input type="color" onChange={this.colorBodyChange} /><br /><br />
-                    Cor da Borda<br />
+                            Cor da Borda<br />
                         <input type="color" onChange={this.colorBorderChange} /><br /><br />
-                    Cor da Sombra<br />
+                            Cor da Sombra<br />
                         <input type="color" onChange={this.colorShadowChange} /><br /><br />
 
 
-                    Estilo da Borda<br />
+                            Estilo da Borda<br />
                         <select name="option" onChange={this.borderStyleChange}>
                             <option value="solid">solid</option>
                             <option value="dotted">dotted</option>
@@ -199,18 +197,24 @@ export default class Form extends Component {
                             <option value="outset">outset</option>
 
                         </select><br /><br />
-                        Espessura da Borda<br />
+                            Espessura da Borda<br />
                         <input type="range" onChange={this.espessuraBordaChange} min="0" max="100" step="0.1" defaultChecked="1" /><br /><br />
-                    </div>
 
-                </form>
 
-                <form>
-                    <input type="submit" id="gerarHtml" value="Gerar HTML" onClick={this.relatorioForm} />
-                    <input type="submit" id="reset" value="Resetar" onSubmit={this.resetForm} />
+                    </form>
 
-                </form>
 
+                </div>
+
+                <div id="rightSide">
+                    <div id="quadrado" style={{ backgroundColor: this.state.colorBody, borderTopLeftRadius: this.state.topLeft + 'px', borderTopRightRadius: this.state.topRight + 'px', borderBottomRightRadius: this.state.bottomRight + 'px', borderBottomLeftRadius: this.state.bottomLeft + 'px', borderColor: this.state.colorBorder, boxShadow: this.state.offSetX + 'px ' + this.state.offSetY + 'px ' + this.state.blurRadius + 'px ' + this.state.spreadRadius + 'px ' + this.state.colorShadow, borderWidth: this.state.espessuraBorda + 'px ', borderStyle: this.state.borderStyle }} ></div><br /><br />
+
+                    <form className="rightSide">
+                        <input type="submit" id="gerarHtml" value="Gerar HTML" onClick={this.relatorioForm} />
+                        <input type="submit" id="reset" value="Resetar" onSubmit={this.resetForm} />
+
+                    </form>
+                </div>
 
             </div>
 

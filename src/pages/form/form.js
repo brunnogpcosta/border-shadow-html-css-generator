@@ -23,6 +23,9 @@ export default class Form extends Component {
             colorShadow: '#000',
             borderStyle: 'solid',
             espessuraBorda: '1px',
+            codigoHtml: '<div id="lbs_shape"></div>',
+            codigoCss: '',
+            showDiv: false,
             relatorio: ''
 
         }
@@ -45,6 +48,7 @@ export default class Form extends Component {
         this.espessuraBordaChange = this.espessuraBordaChange.bind(this)
         this.larguraObjetoChange = this.larguraObjetoChange.bind(this)
         this.alturaObjetoChange = this.alturaObjetoChange.bind(this)
+        this.geraHtml = this.geraHtml.bind(this)
     }
 
 
@@ -128,6 +132,25 @@ export default class Form extends Component {
         this.setState({ bodySizeHeight: event.target.value });
     }
 
+    geraHtml(event) {
+        const corpo = `.lbs_shape{\n
+                       border-top-right-radius:  ${this.state.topRight}px;\n\n
+                       border-top-left-radius:  ${this.state.topLeft}px;\n
+                       border-bottom-right-radius:  ${this.state.bottomRight}px;\n
+                       border-bottom-left-radius:  ${this.state.bottomLeft}px;\n
+                       background-color:  ${this.state.colorBody};\n
+                       border-color:  ${this.state.corBorda};\n
+                       box-shadow:  ${this.state.offSetX}px ${this.state.offSetY}px ${this.state.blurRadius}px ${this.state.spreadRadius}px ${this.state.colorShadow};\n
+                       border-style:  ${this.state.borderStyle};\n
+                       border-width:  ${this.state.espessuraBorda};
+                    }`
+
+
+
+        this.setState({ showDiv: true, codigoCss: corpo });
+
+    }
+
     resetForm() {
         this.setState({ topLeft: '50', topRight: '50', bottomRight: '50', bottomLeft: '50' });
 
@@ -135,19 +158,39 @@ export default class Form extends Component {
 
 
 
-    relatorioForm() {
-        alert("HTML + CSS em construção")
-
-    }
-
 
 
 
     render() {
+        const { showDiv, codigoHtml, codigoCss } = this.state
         return (
             <div id="container">
+                {showDiv && (
+                    <span >
 
 
+                        <div className="fechar" disa>
+                            <h2 onClick={() => this.setState({ showDiv: !showDiv })}>x</h2>
+                        </div>
+
+
+
+                        <div className="codigoHtml">
+                            <h3>Copie o Código Abaixo:</h3>
+                            <h4>HTML</h4>
+                            <div >
+                                <p>{codigoHtml}</p>
+                            </div>
+                            <h4>CSS</h4>
+                            <div className="textoCodigo">
+                                {codigoCss}
+                            </div>
+
+                        </div>
+
+                    </span>
+                )
+                }
                 <div id="leftSide">
                     <form className="formLeft">
 
@@ -209,14 +252,14 @@ export default class Form extends Component {
                 <div id="rightSide">
                     <div id="quadrado" style={{ backgroundColor: this.state.colorBody, borderTopLeftRadius: this.state.topLeft + 'px', borderTopRightRadius: this.state.topRight + 'px', borderBottomRightRadius: this.state.bottomRight + 'px', borderBottomLeftRadius: this.state.bottomLeft + 'px', borderColor: this.state.colorBorder, boxShadow: this.state.offSetX + 'px ' + this.state.offSetY + 'px ' + this.state.blurRadius + 'px ' + this.state.spreadRadius + 'px ' + this.state.colorShadow, borderWidth: this.state.espessuraBorda + 'px ', borderStyle: this.state.borderStyle }} ></div><br /><br />
 
-                    <form className="rightSide">
-                        <input type="submit" id="gerarHtml" value="Gerar HTML" onClick={this.relatorioForm} />
-                        <input type="submit" id="reset" value="Resetar" onSubmit={this.resetForm} />
+                    <div className="rightSide">
+                        <button id="gerarHtml" value="Gerar HTML" onClick={this.geraHtml} >Gerar HTML</button>
+                        <button id="reset" value="Resetar" onClick={this.resetForm} >Resetar</button>
 
-                    </form>
+                    </div>
                 </div>
 
-            </div>
+            </div >
 
         );
 

@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-##Template
+## Template
 
 ![image](https://user-images.githubusercontent.com/49787374/124398871-68973800-dcee-11eb-8a45-27d637b03bde.png)
 
